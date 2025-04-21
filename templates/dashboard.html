@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Agentic Solution{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4">Dashboard</h1>
+    
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-blog"></i>
+                <h3>12</h3>
+                <p>Blog Posts</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-share-alt"></i>
+                <h3>45</h3>
+                <p>Social Posts</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-eye"></i>
+                <h3>1.2K</h3>
+                <p>Total Views</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-comments"></i>
+                <h3>89</h3>
+                <p>Engagements</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <a href="{{ url_for('blog') }}" class="btn btn-primary w-100">
+                                <i class="fas fa-plus me-2"></i>New Blog Post
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{{ url_for('social') }}" class="btn btn-primary w-100">
+                                <i class="fas fa-share-alt me-2"></i>Schedule Post
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{{ url_for('chatbot') }}" class="btn btn-primary w-100">
+                                <i class="fas fa-robot me-2"></i>Chatbot Settings
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{{ url_for('analytics') }}" class="btn btn-primary w-100">
+                                <i class="fas fa-chart-line me-2"></i>View Analytics
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Recent Blog Posts</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">The Future of AI in Content Creation</h6>
+                                <small>3 days ago</small>
+                            </div>
+                            <p class="mb-1">Exploring the latest trends in AI-powered content generation...</p>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Social Media Marketing Tips</h6>
+                                <small>1 week ago</small>
+                            </div>
+                            <p class="mb-1">Best practices for social media marketing in 2024...</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Recent Social Media Activity</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Twitter Post</h6>
+                                <small>2 hours ago</small>
+                            </div>
+                            <p class="mb-1">Just published our latest blog post about AI content creation...</p>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">LinkedIn Post</h6>
+                                <small>1 day ago</small>
+                            </div>
+                            <p class="mb-1">Sharing insights about the future of digital marketing...</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

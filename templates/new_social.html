@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Schedule Social Post - Agentic Solution{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Schedule New Post</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('new_social') }}">
+                        <div class="mb-3">
+                            <label for="platform" class="form-label">Platform</label>
+                            <select class="form-select" id="platform" name="platform" required>
+                                <option value="">Select Platform</option>
+                                <option value="Twitter">Twitter</option>
+                                <option value="Facebook">Facebook</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="LinkedIn">LinkedIn</option>
+                                <option value="Medium">Medium</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Content</label>
+                            <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                            <div class="form-text">Maximum 280 characters for Twitter, 2200 for Facebook, 2200 for Instagram, 3000 for LinkedIn, and unlimited for Medium.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="scheduled_time" class="form-label">Schedule Time (Optional)</label>
+                            <input type="datetime-local" class="form-control" id="scheduled_time" name="scheduled_time">
+                            <div class="form-text">Leave empty to post immediately.</div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('social') }}" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Schedule Post</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    document.getElementById('content').addEventListener('input', function() {
+        const platform = document.getElementById('platform').value;
+        const content = this.value;
+        let maxLength = 280; // Default to Twitter's limit
+        
+        switch(platform) {
+            case 'Facebook':
+            case 'Instagram':
+                maxLength = 2200;
+                break;
+            case 'LinkedIn':
+                maxLength = 3000;
+                break;
+            case 'Medium':
+                maxLength = 100000; // Effectively unlimited
+                break;
+        }
+        
+        if (content.length > maxLength) {
+            this.value = content.substring(0, maxLength);
+        }
+        
+        const remaining = maxLength - this.value.length;
+        const counter = document.createElement('div');
+        counter.className = 'form-text';
+        counter.textContent = `${remaining} characters remaining`;
+        
+        const existingCounter = this.parentElement.querySelector('.form-text:last-child');
+        if (existingCounter) {
+            existingCounter.remove();
+        }
+        this.parentElement.appendChild(counter);
+    });
+</script>
+{% endblock %}
+{% endblock %} 

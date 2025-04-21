@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}AI Chatbot - Agentic Solution{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Chatbot Settings</h5>
+                </div>
+                <div class="card-body">
+                    <form id="chatbot-settings">
+                        <div class="mb-3">
+                            <label for="personality" class="form-label">Personality</label>
+                            <select class="form-select" id="personality">
+                                <option value="professional">Professional</option>
+                                <option value="friendly">Friendly</option>
+                                <option value="casual">Casual</option>
+                                <option value="formal">Formal</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="language" class="form-label">Language</label>
+                            <select class="form-select" id="language">
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="voice-enabled">
+                                <label class="form-check-label" for="voice-enabled">
+                                    Enable Voice Chat
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Save Settings</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Chat with AI Assistant</h5>
+                </div>
+                <div class="card-body">
+                    <div id="chat-messages" class="chat-messages mb-3" style="height: 400px; overflow-y: auto;">
+                        <div class="message bot">
+                            <div class="message-content">
+                                Hello! I'm your AI assistant. How can I help you today?
+                            </div>
+                        </div>
+                    </div>
+                    <form id="chat-form" class="d-flex">
+                        <input type="text" id="user-input" class="form-control me-2" placeholder="Type your message...">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_css %}
+<style>
+    .chat-messages {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 15px;
+    }
+    
+    .message {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .message.user {
+        align-items: flex-end;
+    }
+    
+    .message.bot {
+        align-items: flex-start;
+    }
+    
+    .message-content {
+        max-width: 70%;
+        padding: 10px 15px;
+        border-radius: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .message.user .message-content {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+    
+    .message.bot .message-content {
+        background-color: #e9ecef;
+        color: var(--text-color);
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.getElementById('chat-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const userInput = document.getElementById('user-input');
+        const message = userInput.value.trim();
+        
+        if (message) {
+            // Add user message to chat
+            addMessage(message, 'user');
+            userInput.value = '';
+            
+            // Simulate bot response (replace with actual API call)
+            setTimeout(() => {
+                addMessage('I received your message: ' + message, 'bot');
+            }, 1000);
+        }
+    });
+    
+    function addMessage(content, sender) {
+        const chatMessages = document.getElementById('chat-messages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        
+        const messageContent = document.createElement('div');
+        messageContent.className = 'message-content';
+        messageContent.textContent = content;
+        
+        messageDiv.appendChild(messageContent);
+        chatMessages.appendChild(messageDiv);
+        
+        // Scroll to bottom
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // Voice chat functionality
+    const voiceEnabled = document.getElementById('voice-enabled');
+    let recognition;
+    
+    if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById('user-input').value = transcript;
+        };
+    }
+    
+    voiceEnabled.addEventListener('change', function() {
+        if (this.checked && recognition) {
+            recognition.start();
+        } else if (recognition) {
+            recognition.stop();
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %} 

@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - Agentic Solution{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="h3 mb-4">Analytics Dashboard</h1>
+    
+    <!-- Overview Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-eye"></i>
+                <h3>1.2K</h3>
+                <p>Total Views</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-comments"></i>
+                <h3>89</h3>
+                <p>Engagements</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-share-alt"></i>
+                <h3>45</h3>
+                <p>Shares</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <h3>2.5 min</h3>
+                <p>Avg. Time on Page</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Traffic Sources</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="trafficChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Engagement by Platform</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="platformChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Content -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Top Performing Blog Posts</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">The Future of AI in Content Creation</h6>
+                                <small>1.2K views</small>
+                            </div>
+                            <p class="mb-1">45 engagements, 23 shares</p>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Social Media Marketing Tips</h6>
+                                <small>890 views</small>
+                            </div>
+                            <p class="mb-1">32 engagements, 15 shares</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Top Performing Social Posts</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Twitter: AI Content Creation Tips</h6>
+                                <small>245 engagements</small>
+                            </div>
+                            <p class="mb-1">45 retweets, 89 likes</p>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">LinkedIn: Digital Marketing Trends</h6>
+                                <small>189 engagements</small>
+                            </div>
+                            <p class="mb-1">32 comments, 45 shares</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Traffic Sources Chart
+    const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+    new Chart(trafficCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Organic Search', 'Social Media', 'Direct', 'Referral'],
+            datasets: [{
+                data: [45, 25, 20, 10],
+                backgroundColor: [
+                    '#3498db',
+                    '#2ecc71',
+                    '#f1c40f',
+                    '#e74c3c'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    // Platform Engagement Chart
+    const platformCtx = document.getElementById('platformChart').getContext('2d');
+    new Chart(platformCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Twitter', 'Facebook', 'LinkedIn', 'Instagram', 'Medium'],
+            datasets: [{
+                label: 'Engagements',
+                data: [245, 189, 156, 120, 89],
+                backgroundColor: '#3498db'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %} 

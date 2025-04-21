@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Social Media - Agentic Solution{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Social Media Management</h1>
+        <a href="{{ url_for('new_social') }}" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Schedule Post
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Scheduled Posts</h5>
+                </div>
+                <div class="card-body">
+                    {% if posts %}
+                        <div class="list-group">
+                            {% for post in posts %}
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">
+                                            <i class="fab fa-{{ post.platform.lower() }} me-2"></i>
+                                            {{ post.platform }}
+                                        </h5>
+                                        <small>
+                                            {% if post.scheduled_time %}
+                                                Scheduled for: {{ post.scheduled_time.strftime('%Y-%m-%d %H:%M') }}
+                                            {% else %}
+                                                Posted: {{ post.created_at.strftime('%Y-%m-%d %H:%M') }}
+                                            {% endif %}
+                                        </small>
+                                    </div>
+                                    <p class="mb-1">{{ post.content }}</p>
+                                    <div class="mt-2">
+                                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-share-alt text-muted mb-3" style="font-size: 3rem;"></i>
+                            <p class="text-muted">No scheduled posts yet. Schedule your first post!</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
