@@ -1,169 +1,649 @@
 {% extends "base.html" %}
 
-{% block title %}Analytics - Agentic Solution{% endblock %}
+{% block title %}Analytics - Agent Kira{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-    <h1 class="h3 mb-4">Analytics Dashboard</h1>
-    
+<div class="analytics-page">
+    <!-- Header -->
+    <div class="analytics-header">
+        <div class="header-content">
+            <h1>Analytics Dashboard</h1>
+            <p>Track your social media performance</p>
+        </div>
+        <div class="date-range">
+            <select class="time-selector">
+                <option value="7">Last 7 Days</option>
+                <option value="30" selected>Last 30 Days</option>
+                <option value="90">Last 90 Days</option>
+                <option value="365">Last Year</option>
+            </select>
+        </div>
+    </div>
+
     <!-- Overview Cards -->
-    <div class="row mb-4">
-        <div class="col-md-3">
-            <div class="stat-card">
-                <i class="fas fa-eye"></i>
-                <h3>1.2K</h3>
-                <p>Total Views</p>
+    <div class="overview-grid">
+        <div class="overview-card">
+            <div class="card-header">
+                <h3>Total Reach</h3>
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="card-content">
+                <span class="metric-value">24.5K</span>
+                <span class="metric-change up">+12%</span>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="stat-card">
-                <i class="fas fa-comments"></i>
-                <h3>89</h3>
-                <p>Engagements</p>
+        <div class="overview-card">
+            <div class="card-header">
+                <h3>Engagements</h3>
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="card-content">
+                <span class="metric-value">8.2K</span>
+                <span class="metric-change up">+8%</span>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="stat-card">
-                <i class="fas fa-share-alt"></i>
-                <h3>45</h3>
-                <p>Shares</p>
+        <div class="overview-card">
+            <div class="card-header">
+                <h3>New Followers</h3>
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="card-content">
+                <span class="metric-value">3.1K</span>
+                <span class="metric-change up">+15%</span>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="stat-card">
-                <i class="fas fa-clock"></i>
-                <h3>2.5 min</h3>
-                <p>Avg. Time on Page</p>
+        <div class="overview-card">
+            <div class="card-header">
+                <h3>Content Posted</h3>
+                <i class="fas fa-paper-plane"></i>
             </div>
-        </div>
-    </div>
-
-    <!-- Charts -->
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Traffic Sources</h5>
-                </div>
-                <div class="card-body">
-                    <canvas id="trafficChart" height="300"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Engagement by Platform</h5>
-                </div>
-                <div class="card-body">
-                    <canvas id="platformChart" height="300"></canvas>
-                </div>
+            <div class="card-content">
+                <span class="metric-value">245</span>
+                <span class="metric-change up">+5%</span>
             </div>
         </div>
     </div>
 
-    <!-- Top Content -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Top Performing Blog Posts</h5>
+    <!-- Platform Performance -->
+    <div class="section">
+        <h2>Platform Performance</h2>
+        <div class="platform-grid">
+            <!-- Twitter -->
+            <div class="platform-card twitter">
+                <div class="platform-header">
+                    <i class="fab fa-twitter"></i>
+                    <h3>Twitter</h3>
                 </div>
-                <div class="card-body">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">The Future of AI in Content Creation</h6>
-                                <small>1.2K views</small>
+                <div class="platform-stats">
+                    <div class="stat">
+                        <span class="value">8.2K</span>
+                        <span class="label">Followers</span>
+                        <span class="trend up">+12%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="value">456</span>
+                        <span class="label">Engagement</span>
+                        <span class="trend up">+8%</span>
+                    </div>
+                </div>
+                <div class="engagement-graph">
+                    <canvas id="twitterChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Instagram -->
+            <div class="platform-card instagram">
+                <div class="platform-header">
+                    <i class="fab fa-instagram"></i>
+                    <h3>Instagram</h3>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat">
+                        <span class="value">12.3K</span>
+                        <span class="label">Followers</span>
+                        <span class="trend up">+15%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="value">789</span>
+                        <span class="label">Likes</span>
+                        <span class="trend up">+10%</span>
+                    </div>
+                </div>
+                <div class="engagement-graph">
+                    <canvas id="instagramChart"></canvas>
+                </div>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="platform-card linkedin">
+                <div class="platform-header">
+                    <i class="fab fa-linkedin"></i>
+                    <h3>LinkedIn</h3>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat">
+                        <span class="value">5.6K</span>
+                        <span class="label">Connections</span>
+                        <span class="trend up">+7%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="value">234</span>
+                        <span class="label">Engagement</span>
+                        <span class="trend up">+5%</span>
+                    </div>
+                </div>
+                <div class="engagement-graph">
+                    <canvas id="linkedinChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Facebook -->
+            <div class="platform-card facebook">
+                <div class="platform-header">
+                    <i class="fab fa-facebook"></i>
+                    <h3>Facebook</h3>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat">
+                        <span class="value">15.7K</span>
+                        <span class="label">Followers</span>
+                        <span class="trend up">+9%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="value">567</span>
+                        <span class="label">Engagement</span>
+                        <span class="trend up">+6%</span>
+                    </div>
+                </div>
+                <div class="engagement-graph">
+                    <canvas id="facebookChart"></canvas>
+                </div>
+            </div>
+
+            <!-- YouTube -->
+            <div class="platform-card youtube">
+                <div class="platform-header">
+                    <i class="fab fa-youtube"></i>
+                    <h3>YouTube</h3>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat">
+                        <span class="value">25.1K</span>
+                        <span class="label">Subscribers</span>
+                        <span class="trend up">+18%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="value">1.2K</span>
+                        <span class="label">Views</span>
+                        <span class="trend up">+12%</span>
+                    </div>
+                </div>
+                <div class="engagement-graph">
+                    <canvas id="youtubeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- TikTok -->
+            <div class="platform-card tiktok">
+                <div class="platform-header">
+                    <i class="fab fa-tiktok"></i>
+                    <h3>TikTok</h3>
+                </div>
+                <div class="platform-stats">
+                    <div class="stat">
+                        <span class="value">18.9K</span>
+                        <span class="label">Followers</span>
+                        <span class="trend up">+22%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="value">892</span>
+                        <span class="label">Likes</span>
+                        <span class="trend up">+15%</span>
+                    </div>
+                </div>
+                <div class="engagement-graph">
+                    <canvas id="tiktokChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Analytics -->
+    <div class="section">
+        <h2>Content Analytics</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="content-header">
+                    <h3>Top Performing Posts</h3>
+                    <div class="content-filters">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Images</button>
+                        <button class="filter-btn">Videos</button>
+                    </div>
+                </div>
+                <div class="content-list">
+                    <div class="content-item">
+                        <div class="item-preview">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="item-details">
+                            <h4>AI Content Creation Tips</h4>
+                            <div class="item-stats">
+                                <span><i class="fas fa-eye"></i> 2.4K</span>
+                                <span><i class="fas fa-heart"></i> 156</span>
+                                <span><i class="fas fa-comment"></i> 45</span>
                             </div>
-                            <p class="mb-1">45 engagements, 23 shares</p>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Social Media Marketing Tips</h6>
-                                <small>890 views</small>
+                        </div>
+                    </div>
+                    <div class="content-item">
+                        <div class="item-preview">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="item-details">
+                            <h4>Social Media Strategy</h4>
+                            <div class="item-stats">
+                                <span><i class="fas fa-eye"></i> 1.8K</span>
+                                <span><i class="fas fa-heart"></i> 98</span>
+                                <span><i class="fas fa-comment"></i> 32</span>
                             </div>
-                            <p class="mb-1">32 engagements, 15 shares</p>
-                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="content-header">
+                    <h3>Engagement Trends</h3>
+                </div>
+                <div class="trend-chart">
+                    <div class="chart-placeholder">
+                        <p>Engagement trend visualization</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Top Performing Social Posts</h5>
+    </div>
+
+    <!-- Audience Insights -->
+    <div class="section">
+        <h2>Audience Insights</h2>
+        <div class="audience-grid">
+            <div class="audience-card">
+                <h3>Demographics</h3>
+                <div class="demographic-stats">
+                    <div class="demographic-item">
+                        <span class="label">Age 18-24</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 35%"></div>
+                        </div>
+                        <span class="value">35%</span>
+                    </div>
+                    <div class="demographic-item">
+                        <span class="label">Age 25-34</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 45%"></div>
+                        </div>
+                        <span class="value">45%</span>
+                    </div>
+                    <div class="demographic-item">
+                        <span class="label">Age 35-44</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 20%"></div>
+                        </div>
+                        <span class="value">20%</span>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">Twitter: AI Content Creation Tips</h6>
-                                <small>245 engagements</small>
-                            </div>
-                            <p class="mb-1">45 retweets, 89 likes</p>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-1">LinkedIn: Digital Marketing Trends</h6>
-                                <small>189 engagements</small>
-                            </div>
-                            <p class="mb-1">32 comments, 45 shares</p>
-                        </a>
+            </div>
+            <div class="audience-card">
+                <h3>Gender Distribution</h3>
+                <div class="gender-stats">
+                    <div class="gender-item">
+                        <span class="label">Female</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 65%"></div>
+                        </div>
+                        <span class="value">65%</span>
+                    </div>
+                    <div class="gender-item">
+                        <span class="label">Male</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 35%"></div>
+                        </div>
+                        <span class="value">35%</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .analytics-page {
+        padding: 2rem;
+        background: #ffffff;
+        min-height: 100vh;
+    }
+
+    .analytics-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
+    }
+
+    .header-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(45deg, #2d3436 0%, #636e72 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .header-content p {
+        color: #636e72;
+        font-size: 1.1rem;
+    }
+
+    .time-selector {
+        padding: 0.75rem 1.25rem;
+        border-radius: 12px;
+        border: 1px solid #f1f2f6;
+        background: #f8f9fa;
+        color: #2d3436;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .time-selector:hover {
+        border-color: #dfe6e9;
+        background: #f1f2f6;
+    }
+
+    .overview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
+
+    .overview-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f1f2f6;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .overview-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .card-header h3 {
+        font-size: 1.2rem;
+        color: #2d3436;
+        margin: 0;
+    }
+
+    .card-header i {
+        font-size: 1.5rem;
+        color: #636e72;
+    }
+
+    .card-content {
+        display: flex;
+        align-items: baseline;
+        gap: 0.75rem;
+    }
+
+    .metric-value {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2d3436;
+    }
+
+    .metric-change {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .metric-change.up {
+        color: #4CAF50;
+    }
+
+    .metric-change.down {
+        color: #f44336;
+    }
+
+    .section {
+        margin-bottom: 4rem;
+    }
+
+    .section h2 {
+        font-size: 2rem;
+        color: #2d3436;
+        margin-bottom: 2rem;
+    }
+
+    .platform-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+
+    .platform-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        border: 1px solid #f1f2f6;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .platform-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .platform-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .platform-header i {
+        font-size: 2rem;
+    }
+
+    .platform-header h3 {
+        font-size: 1.5rem;
+        color: #2d3436;
+        margin: 0;
+    }
+
+    .twitter .platform-header i { color: #1DA1F2; }
+    .instagram .platform-header i { color: #C13584; }
+    .linkedin .platform-header i { color: #0077B5; }
+    .facebook .platform-header i { color: #1877F2; }
+    .youtube .platform-header i { color: #FF0000; }
+    .tiktok .platform-header i { color: #000000; }
+
+    .platform-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat {
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .stat .value {
+        display: block;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #2d3436;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat .label {
+        display: block;
+        font-size: 1rem;
+        color: #636e72;
+        margin-bottom: 0.5rem;
+    }
+
+    .trend {
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .trend.up {
+        color: #4CAF50;
+    }
+
+    .trend.down {
+        color: #f44336;
+    }
+
+    .engagement-graph {
+        height: 200px;
+        margin-top: 1.5rem;
+    }
+
+    @media (max-width: 1200px) {
+        .platform-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+    }
+
+    @media (max-width: 768px) {
+        .analytics-page {
+            padding: 1.5rem;
+        }
+
+        .analytics-header {
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .overview-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .platform-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .platform-stats {
+            grid-template-columns: 1fr;
+        }
+
+        .engagement-graph {
+            height: 180px;
+        }
+    }
+</style>
+{% endblock %}
 
 {% block extra_js %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Traffic Sources Chart
-    const trafficCtx = document.getElementById('trafficChart').getContext('2d');
-    new Chart(trafficCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Organic Search', 'Social Media', 'Direct', 'Referral'],
-            datasets: [{
-                data: [45, 25, 20, 10],
-                backgroundColor: [
-                    '#3498db',
-                    '#2ecc71',
-                    '#f1c40f',
-                    '#e74c3c'
-                ]
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-
-    // Platform Engagement Chart
-    const platformCtx = document.getElementById('platformChart').getContext('2d');
-    new Chart(platformCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Twitter', 'Facebook', 'LinkedIn', 'Instagram', 'Medium'],
-            datasets: [{
-                label: 'Engagements',
-                data: [245, 189, 156, 120, 89],
-                backgroundColor: '#3498db'
-            }]
-        },
+    // Common configuration for all charts
+    const commonConfig = {
+        type: 'line',
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: 12
+                        }
+                    }
+                }
+            },
+            elements: {
+                point: {
+                    radius: 0
+                },
+                line: {
+                    tension: 0.4
                 }
             }
         }
+    };
+
+    // Generate random data for demonstration
+    function generateData() {
+        return Array.from({length: 7}, () => Math.floor(Math.random() * 1000) + 500);
+    }
+
+    // Platform-specific colors
+    const platformColors = {
+        twitter: '#1DA1F2',
+        instagram: '#C13584',
+        linkedin: '#0077B5',
+        facebook: '#1877F2',
+        youtube: '#FF0000',
+        tiktok: '#000000'
+    };
+
+    // Create charts for each platform
+    Object.keys(platformColors).forEach(platform => {
+        const ctx = document.getElementById(`${platform}Chart`).getContext('2d');
+        new Chart(ctx, {
+            ...commonConfig,
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    data: generateData(),
+                    borderColor: platformColors[platform],
+                    backgroundColor: `${platformColors[platform]}20`,
+                    tension: 0.4,
+                    fill: true,
+                    borderWidth: 2
+                }]
+            }
+        });
     });
 </script>
-{% endblock %}
 {% endblock %} 

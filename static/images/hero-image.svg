@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background shapes -->
+    <rect x="50" y="50" width="500" height="300" rx="20" fill="url(#gradient-bg)" />
+    
+    <!-- Content management illustration -->
+    <g transform="translate(150, 100)">
+        <!-- Document stack -->
+        <rect x="0" y="0" width="120" height="160" rx="10" fill="white" />
+        <rect x="10" y="10" width="100" height="140" rx="5" fill="var(--primary-color)" fill-opacity="0.1" />
+        
+        <!-- Second document -->
+        <rect x="20" y="20" width="120" height="160" rx="10" fill="white" />
+        <rect x="30" y="30" width="100" height="140" rx="5" fill="var(--primary-color)" fill-opacity="0.1" />
+        
+        <!-- Third document -->
+        <rect x="40" y="40" width="120" height="160" rx="10" fill="white" />
+        <rect x="50" y="50" width="100" height="140" rx="5" fill="var(--primary-color)" fill-opacity="0.1" />
+        
+        <!-- Social media icons -->
+        <g transform="translate(200, 20)">
+            <circle cx="30" cy="30" r="25" fill="var(--primary-color)" fill-opacity="0.1" />
+            <circle cx="30" cy="30" r="20" fill="white" />
+            <text x="30" y="35" text-anchor="middle" fill="var(--primary-color)" font-family="Arial" font-size="20">f</text>
+            
+            <circle cx="80" cy="30" r="25" fill="var(--primary-color)" fill-opacity="0.1" />
+            <circle cx="80" cy="30" r="20" fill="white" />
+            <text x="80" y="35" text-anchor="middle" fill="var(--primary-color)" font-family="Arial" font-size="20">t</text>
+            
+            <circle cx="130" cy="30" r="25" fill="var(--primary-color)" fill-opacity="0.1" />
+            <circle cx="130" cy="30" r="20" fill="white" />
+            <text x="130" y="35" text-anchor="middle" fill="var(--primary-color)" font-family="Arial" font-size="20">in</text>
+        </g>
+        
+        <!-- Analytics chart -->
+        <g transform="translate(200, 100)">
+            <rect x="0" y="0" width="200" height="100" rx="10" fill="white" />
+            <path d="M20,80 L60,40 L100,60 L140,20 L180,40" stroke="var(--primary-color)" stroke-width="3" fill="none" />
+            <circle cx="20" cy="80" r="4" fill="var(--primary-color)" />
+            <circle cx="60" cy="40" r="4" fill="var(--primary-color)" />
+            <circle cx="100" cy="60" r="4" fill="var(--primary-color)" />
+            <circle cx="140" cy="20" r="4" fill="var(--primary-color)" />
+            <circle cx="180" cy="40" r="4" fill="var(--primary-color)" />
+        </g>
+    </g>
+    
+    <!-- Gradient definition -->
+    <defs>
+        <linearGradient id="gradient-bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--primary-color)" stop-opacity="0.1" />
+            <stop offset="100%" stop-color="var(--secondary-color)" stop-opacity="0.1" />
+        </linearGradient>
+    </defs>
+</svg> 

@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="landing-page">
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Welcome to Agent Kira</h1>
+                    <p class="lead mb-4">Your intelligent AI assistant for content creation and management. Let Kira help you streamline your workflow and boost your productivity.</p>
+                    <div class="d-flex gap-3">
+                        <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg">Get Started</a>
+                        <a href="#features" class="btn btn-outline-primary btn-lg">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{{ url_for('static', filename='images/image.png') }}" alt="Agent Kira" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features-section" id="features">
+        <div class="container">
+            <h2 class="text-center mb-5">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <svg class="feature-icon">
+                            <use xlink:href="{{ url_for('static', filename='images/feature-icons.svg') }}#content-creation"/>
+                        </svg>
+                        <h3>Content Creation</h3>
+                        <p>Create and manage your content with our intuitive editor. Save drafts and publish when ready.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <svg class="feature-icon">
+                            <use xlink:href="{{ url_for('static', filename='images/feature-icons.svg') }}#social-media"/>
+                        </svg>
+                        <h3>Social Media</h3>
+                        <p>Connect your social media accounts and schedule posts across multiple platforms.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <svg class="feature-icon">
+                            <use xlink:href="{{ url_for('static', filename='images/feature-icons.svg') }}#analytics"/>
+                        </svg>
+                        <h3>Analytics</h3>
+                        <p>Track your content performance with detailed analytics and insights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <div class="container text-center">
+            <h2 class="mb-4">Ready to Get Started?</h2>
+            <p class="lead mb-4">Join thousands of content creators who are already using our platform.</p>
+            <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg">Sign Up Now</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .landing-page {
+        background-image: url("{{ url_for('static', filename='images/background-pattern.svg') }}");
+        background-size: 200px;
+    }
+
+    .hero-section {
+        padding: 6rem 0;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    }
+
+    .features-section {
+        padding: 4rem 0;
+    }
+
+    .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        text-align: center;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 1.5rem;
+    }
+
+    .cta-section {
+        padding: 4rem 0;
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-section .d-flex {
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %} 
